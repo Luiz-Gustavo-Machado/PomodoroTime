@@ -1,4 +1,3 @@
-
 const buttonPlay = document.querySelector('.play')
 const buttonPause = document.querySelector('.pause')
 const buttonStop = document.querySelector('.stop')
@@ -6,75 +5,74 @@ const buttonSet = document.querySelector('.set')
 const buttonSoundOn = document.querySelector('.sound-on')
 const buttonSoundOff = document.querySelector('.sound-off')
 let minutes
-const minutesDiplay = document.querySelector('.minutes')
-const secondsDiplay = document.querySelector('.seconds')
+const minutesDisplay = document.querySelector('.minutes')
+const secondsDisplay = document.querySelector('.seconds')
 
 function resetControls() {
-    buttonPlay.classList.toggle('hide')
-    buttonPause.classList.toggle('hide')
-    buttonSet.classList.toggle('hide')
-    buttonStop.classList.toggle('hide')
+  buttonPlay.classList.remove('hide')
+  buttonPause.classList.add('hide')
+  buttonSet.classList.remove('hide')
+  buttonStop.classList.add('hide')
 }
 
-function updateTimerDisplay( minutes, seconds) {
-    secondsDiplay.textContent = String(seconds).padStart(2, "0")
-    minutesDiplay.textContent = String(minutes).padStart(2, "0")
+function updateTimerDisplay(minutes, seconds) {
+  minutesDisplay.textContent = String(minutes).padStart(2, "0")
+  secondsDisplay.textContent = String(seconds).padStart(2, "0")
 }
 
-function countdown() {
-    setTimeout(function () {
-        let seconds = Number(secondsDiplay.textContent)
-        let minutes = Number(minutesDiplay.textContent)
+function countdown(){
+  setTimeout(function() {
+    let seconds =  Number(secondsDisplay.textContent)
+    let minutes = Number(minutesDisplay.textContent)
 
+    updateTimerDisplay(minutes, 0)
 
-        if (minutes <= 0) {
-            resetControls()
-            return
-        }
+    if (minutes <= 0) {
+      resetControls()
+      return
+    }
 
-        if (seconds <= 0) {
-            seconds = 60
+    if( seconds <= 0 ) {
+      seconds = 2
+      --minutes
+    }
 
-        }
-
-        countdown()
-    }, 1000)
-}
-
-
-buttonPlay.addEventListener('click', function () {
-    buttonPlay.classList.toggle('hide')
-    buttonPause.classList.toggle('hide')
-    buttonSet.classList.toggle('hide')
-    buttonStop.classList.toggle('hide')
+    updateTimerDisplay(minutes, String(seconds - 1))
 
     countdown()
-})
+  }, 1000)
+}
 
-buttonPause.addEventListener('click', function () {
-    buttonPlay.classList.toggle('hide')
-    buttonPause.classList.toggle('hide')
-    buttonSet.classList.toggle('hide')
-    buttonStop.classList.toggle('hide')
-})
+buttonPlay.addEventListener('click', function() {
+  buttonPlay.classList.add('hide')
+  buttonPause.classList.remove('hide')
+  buttonSet.classList.add('hide')
+  buttonStop.classList.remove('hide')
 
-buttonStop.addEventListener('click', function () {
-    resetControls()
-})
-
-buttonSoundOff.addEventListener('click', function () {
-    buttonSoundOn.classList.toggle('hide')
-    buttonSoundOff.classList.toggle('hide')
+  countdown()
 
 })
 
-buttonSoundOn.addEventListener('click', function () {
-    buttonSoundOff.classList.toggle('hide')
-    buttonSoundOn.classList.toggle('hide')
-
+buttonPause.addEventListener('click', function() {
+  buttonPause.classList.add('hide')
+  buttonPlay.classList.remove('hide')
 })
 
-buttonSet.addEventListener('click', function () {
-    minutes = prompt('Qauntos minutos?')
-    updateTimerDisplay(minutes, 0)
+buttonStop.addEventListener('click', function() {
+  resetControls()
+})
+
+buttonSoundOff.addEventListener('click', function() {
+  buttonSoundOn.classList.remove('hide')
+  buttonSoundOff.classList.add('hide')
+})
+
+buttonSoundOn.addEventListener('click', function() {
+  buttonSoundOn.classList.add('hide')
+  buttonSoundOff.classList.remove('hide')
+})
+
+buttonSet.addEventListener('click', function() {
+  minutes = prompt('Quantos minutos?')
+  updateTimerDisplay(minutes, 0)
 })
