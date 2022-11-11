@@ -42,13 +42,14 @@ button svg {
 }
 
 main {
-    justify-self: end;
-    align-self: center;
+    justify-self: center;
+    align-self: end;
 }
 
 #timer {
     font-size: clamp(4rem, 4rem + 10vw, 8.8rem);
     display: flex;
+    margin-bottom: 1.6rem ;
 }
 
 #controls {
@@ -75,5 +76,7 @@ button {
 footer {
     justify-self: end;
     align-self: end;
+
+    padding: 0 4rem 3.2rem 0;
 }
 
