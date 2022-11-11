@@ -9,17 +9,33 @@ let minutes
 const minutesDiplay = document.querySelector('.minutes')
 const secondsDiplay = document.querySelector('.seconds')
 
+function resetControls() {
+    buttonPlay.classList.toggle('hide')
+    buttonPause.classList.toggle('hide')
+    buttonSet.classList.toggle('hide')
+    buttonStop.classList.toggle('hide')
+}
 
-function countdown(){
-    setTimeout(function() {
+function updateTimerDisplay( minutes, seconds) {
+    secondsDiplay.textContent = String(seconds).padStart(2, "0")
+    minutesDiplay.textContent = String(minutes).padStart(2, "0")
+}
+
+function countdown() {
+    setTimeout(function () {
         let seconds = Number(secondsDiplay.textContent)
         let minutes = Number(minutesDiplay.textContent)
 
-        
+
         if (minutes <= 0) {
-            seconds = 10
+            resetControls()
+            return
         }
-        secondsDiplay.textContent = String(seconds -1).padStart(2, "0")
+
+        if (seconds <= 0) {
+            seconds = 60
+
+        }
 
         countdown()
     }, 1000)
@@ -32,7 +48,7 @@ buttonPlay.addEventListener('click', function () {
     buttonSet.classList.toggle('hide')
     buttonStop.classList.toggle('hide')
 
- countdown()
+    countdown()
 })
 
 buttonPause.addEventListener('click', function () {
@@ -43,25 +59,22 @@ buttonPause.addEventListener('click', function () {
 })
 
 buttonStop.addEventListener('click', function () {
-    buttonPlay.classList.toggle('hide')
-    buttonPause.classList.toggle('hide')
-    buttonSet.classList.toggle('hide')
-    buttonStop.classList.toggle('hide')
+    resetControls()
 })
 
 buttonSoundOff.addEventListener('click', function () {
     buttonSoundOn.classList.toggle('hide')
     buttonSoundOff.classList.toggle('hide')
-    
+
 })
 
 buttonSoundOn.addEventListener('click', function () {
     buttonSoundOff.classList.toggle('hide')
     buttonSoundOn.classList.toggle('hide')
-    
+
 })
 
 buttonSet.addEventListener('click', function () {
     minutes = prompt('Qauntos minutos?')
-    minutesDiplay.textContent = minutes
+    updateTimerDisplay(minutes, 0)
 })
