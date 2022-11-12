@@ -1,8 +1,7 @@
 // default import
-import resetControls from './controls.js'
+import resetControls from "./controls.js"
 // named import
-import { Timer } from './timer.js'
-
+import { Timer } from "./timer.js"
 
 const buttonPlay = document.querySelector('.play')
 const buttonPause = document.querySelector('.pause')
@@ -16,12 +15,11 @@ let minutes = Number(minutesDisplay.textContent)
 let timerTimeOut
 
 const timer = Timer({
-  minutesDisplay,
-  secondsDisplay,
-  timerTimeOut,
+  minutesDisplay, 
+  secondsDisplay, 
+  timerTimeOut, 
   resetControls,
 })
-
 
 buttonPlay.addEventListener('click', function() {
   buttonPlay.classList.add('hide')
