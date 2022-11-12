@@ -15,7 +15,7 @@ let minutes = Number(minutesDisplay.textContent)
 let timerTimeOut
 
 const timer = Timer({
-minutesDisplay, 
+  minutesDisplay, 
   secondsDisplay, 
   timerTimeOut, 
   resetControls,
