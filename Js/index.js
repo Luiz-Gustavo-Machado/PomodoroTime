@@ -1,5 +1,5 @@
-import Controls from "./controls"
-import  Timer  from "./timer"
+import Controls from "./controls.js"
+import  Timer  from "./timer.js"
 
 const buttonPlay = document.querySelector('.play')
 const buttonPause = document.querySelector('.pause')
@@ -14,16 +14,17 @@ let timerTimeOut
 
 
 const controls = Controls({
-  play,
-  pause,
-  reset
+  buttonPause,
+  buttonPlay,
+  buttonSet,
+  buttonStop
 })
 
 const timer = Timer({
   minutesDisplay, 
   secondsDisplay, 
   timerTimeOut, 
-  resetControls,
+  resetControls: controls.reset
 })
 
 buttonPlay.addEventListener('click', function() {
