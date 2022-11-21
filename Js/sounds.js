@@ -6,7 +6,7 @@ export default function() {
     
     bgAudio.loop = true
 
-    function presButton() {
+    function pressButton() {
         buttonPressAudio.play()
     }
 
@@ -15,7 +15,7 @@ export default function() {
     }
 
     return {
-        presButton,
+        pressButton,
         timeEnd,
         bgAudio,
     }

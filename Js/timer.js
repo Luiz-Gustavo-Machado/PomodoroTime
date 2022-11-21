@@ -1,17 +1,18 @@
+import sounds from "./sounds.js"
 
-import Sounds from "./sounds.js"
 
 export default function Timer({ 
   minutesDisplay, 
   secondsDisplay, 
-  resetControls
+  resetControls,
+  sounds
 }) {
 
   let timerTimeOut
   let minutes = Number(minutesDisplay.textContent)
 
   function updateDisplay(newMinutes, seconds) {
-    //ternasrio com três etapas
+  //ternasrio com três etapas
     newMinutes = newMinutes === undefined ? minutes : newMinutes
     seconds = seconds === undefined ? 0 : seconds
     minutesDisplay.textContent = String(newMinutes).padStart(2, "0")
@@ -38,8 +39,9 @@ export default function Timer({
         return
       }
 
+
       if( seconds <= 0 ) {
-        seconds = 3
+        seconds = 60
         --minutes
       }
 
