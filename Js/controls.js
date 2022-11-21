@@ -16,7 +16,7 @@ export default function Controls({
     buttonPause.classList.add('hide')
     buttonPlay.classList.remove('hide')
   }
-
+  
   function reset() {
     buttonPlay.classList.remove('hide')
     buttonPause.classList.add('hide')
@@ -30,14 +30,13 @@ export default function Controls({
       return false
     }
 
-    minutes = newMinutes
+    return newMinutes
   }
 
   return {
+    reset,
     play,
     pause,
-    reset,
     getMinutes
   }
 }
-
